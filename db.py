@@ -1,9 +1,10 @@
-# db.py
+#  importing libraries for csv file 
 import csv
 import os
 
 FILENAME = 'players.csv'
 
+#  reading the player data 
 def read_players():
     """Reads players from CSV and returns a list of dictionaries."""
     players = []
