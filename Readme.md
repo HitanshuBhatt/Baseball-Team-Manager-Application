@@ -1,15 +1,15 @@
-# ⚾ Baseball Team Manager
+#  Baseball Team Manager
 
 A command-line application to manage a baseball team's batting lineup, built in Python.
 
-## 📋 Features
+##  Features
 
 - Display the current lineup with batting averages
 - Add, remove, and reorder players
 - Edit player positions and statistics
 - Persistent storage via CSV file
 
-## 🚀 How to Run
+##  How to Run
 
 ### Requirements
 - Python 3.8 or higher
@@ -25,7 +25,7 @@ cd <your-repo>
 python main.py
 ```
 
-## 📁 Project Structure
+##  Project Structure
 ```
 ├── main.py        # Entry point; coordinates all layers
 ├── ui.py          # Presentation layer (input/output only)
@@ -34,7 +34,7 @@ python main.py
 └── players.csv    # Persistent player data
 ```
 
-## 🗂️ Data Format
+##  Data Format
 
 Players are stored in `players.csv` with the following columns:
 ```
@@ -46,17 +46,12 @@ Example:
 Buster Posey,C,4575,1380
 ```
 
-## 🧠 Design Notes
+##  Design Notes
 
 - **Layered architecture**: UI, business logic, and data access are fully separated.
 - **OOP design**: `Player` and `Lineup` classes encapsulate all player data and lineup operations.
 - **Input validation**: All user inputs are validated with looping prompts and range checks.
 
-## 📌 Valid Positions
+##  Valid Positions
 
 `C, 1B, 2B, 3B, SS, LF, CF, RF, P`
-
-##  AI Tool Disclosure
-
-*(If applicable)* Generative AI tools (e.g., Claude, ChatGPT) were used during development.
-Full prompt/response chat history is included in `ai_chat_history.pdf` as per course policy.
