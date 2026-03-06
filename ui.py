@@ -6,6 +6,7 @@ def display_title():
     print("                   Baseball Team Manager")
     print("=" * 64)
 
+# displays the date of the game and finds the number of days till game 
 def display_dates():
     now = datetime.now()
     print(f"CURRENT DATE:    {now.strftime('%Y-%m-%d')}")
