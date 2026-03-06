@@ -1,28 +1,29 @@
-#  importing libraries for csv file 
+# db.py
 import csv
 import os
 
 FILENAME = 'players.csv'
 
-#  reading the player data 
 def read_players():
     """Reads players from CSV and returns a list of dictionaries."""
-    players = []
+    players_data = []
     if not os.path.exists(FILENAME):
-        return players # Handles missing file gracefully
+        # Create an empty file if it doesn't exist (Professional requirement)
+        with open(FILENAME, mode='w', newline='', encoding='utf-8') as f:
+            pass
+        return players_data
         
     try:
-        with open(FILENAME, mode='r', newline='', encoding='utf-8') as file:
-            reader = csv.reader(file)
+        with open(FILENAME, mode='r', newline='', encoding='utf-8') as f:
+            reader = csv.reader(f)
             for row in reader:
                 if len(row) == 4:
                     name, pos, ab, hits = row
-                    # Split full name into first and last for the Object requirements
                     parts = name.split(' ', 1)
                     first = parts[0]
                     last = parts[1] if len(parts) > 1 else ""
                     
-                    players.append({
+                    players_data.append({
                         "first_name": first,
                         "last_name": last,
                         "position": pos,
@@ -30,17 +31,20 @@ def read_players():
                         "hits": int(hits)
                     })
     except Exception as e:
-        print(f"Data file error: {e}")
+        print(f"Data file error during read: {e}")
         
-    return players
+    return players_data
 
 def write_players(players_list):
     """Writes a list of player dictionaries back to the CSV."""
     try:
-        with open(FILENAME, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
+        # We use 'f' instead of 'file' to avoid potential shadowing
+        with open(FILENAME, mode='w', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
             for p in players_list:
                 full_name = f"{p['first_name']} {p['last_name']}".strip()
                 writer.writerow([full_name, p['position'], p['at_bats'], p['hits']])
+    except PermissionError:
+        print(f"ERROR: Could not save to {FILENAME}. Please close the file if it is open in Excel.")
     except Exception as e:
-        print(f"Error saving data: {e}")
+        print(f"Error saving data (write_players): {e}")
