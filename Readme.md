@@ -1,6 +1,6 @@
 #  Baseball Team Manager
 
-A command-line application to manage a baseball team's batting lineup, built in Python.
+a command-line application to manage a baseball team's batting lineup, built in Python.
 
 ##  Features
 
