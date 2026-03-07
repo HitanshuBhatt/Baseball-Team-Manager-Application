@@ -161,3 +161,10 @@ def get_position(prompt, valid_positions):
             
             # Inform the user of valid position options
             print(f"Invalid position. Valid options are: {', '.join(valid_positions)}")
+
+
+
+
+
+
+            
