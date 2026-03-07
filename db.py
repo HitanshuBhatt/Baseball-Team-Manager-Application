@@ -21,7 +21,7 @@ def read_players():
     # Check if the file exists
     if not os.path.exists(FILENAME):
         
-        # Create an empty file if it doesn't exist (Professional requirement)
+        # Create an empty file if it doesn't exist 
         with open(FILENAME, mode='w', newline='', encoding='utf-8') as f:
             pass
         
@@ -41,19 +41,19 @@ def read_players():
                 # Ensure the row has exactly 4 fields
                 if len(row) == 4:
                     
-                    # Unpack the row values
+                    # Unpack the row values into variables from the csv 
                     name, pos, ab, hits = row
                     
-                    # Split the full name into first and last name
+                    # Split the full name into first and last name using space
                     parts = name.split(' ', 1)
                     
-                    # First part becomes the first name
+                    # First part becomes the first name 
                     first = parts[0]
                     
-                    # If a last name exists use it, otherwise leave it blank
+                    # If a last name exists use it, otherwise leave it blank to avoid index errors
                     last = parts[1] if len(parts) > 1 else ""
                     
-                    # Append the player data as a dictionary
+                    # Append the player data as a dictionary to the players_data list 
                     players_data.append({
                         "first_name": first,
                         "last_name": last,
@@ -75,21 +75,21 @@ def write_players(players_list):
     """Writes a list of player dictionaries back to the CSV."""
     
     try:
-        # We use 'f' instead of 'file' to avoid potential shadowing
+       
         
         # Open the CSV file in write mode (this overwrites the existing file)
         with open(FILENAME, mode='w', newline='', encoding='utf-8') as f:
             
-            # Create a CSV writer object
+            # Create a CSV writer object ready to write rows to the file 
             writer = csv.writer(f)
             
-            # Loop through each player dictionary
+            # Loop through each player dictionary in the provided list
             for p in players_list:
                 
                 # Combine first and last name into a full name string
                 full_name = f"{p['first_name']} {p['last_name']}".strip()
                 
-                # Write the player data as a row in the CSV file
+                # Write the player data as a row in the CSV file with the format
                 writer.writerow([full_name, p['position'], p['at_bats'], p['hits']])
                 
     # Handle case where the file cannot be written because it is open elsewhere

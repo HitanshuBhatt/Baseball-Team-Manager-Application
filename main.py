@@ -1,5 +1,4 @@
-# main.py
-
+# main.py-main program file 
 # Import the database layer which handles reading/writing player data
 import db
 
@@ -10,20 +9,22 @@ import ui
 from objects import Player, Lineup, POSITIONS
 
 
-# Function to load the lineup from the database
+# Function to load the lineup from the database and convert it into Business objects
+# this function serves as the bridge between the db layer and business logic and transforms raw data into usable objects
+
 def load_lineup():
     """Loads raw data from DB layer into Business objects."""
     
-    # Create a new Lineup object
+    # Create a new Lineup object to store the players 
     lineup = Lineup()
     
-    # Read player data from the database (returns list of dictionaries)
+    # Read player data from the db file  (returns list of dictionaries) 
     raw_players = db.read_players()
     
-    # Loop through each player dictionary
+    # Loop through each player dictionary  returned from the databse
     for p in raw_players:
         
-        # Convert dictionary data into a Player object
+        # Convert dictionary data into a Player object using the player constructor 
         player = Player(p['first_name'], p['last_name'], p['position'], p['at_bats'], p['hits'])
         
         # Add the Player object to the lineup
@@ -34,10 +35,12 @@ def load_lineup():
 
 
 # Function to save the lineup back to the database
+# this function converts the business objects back into data structure that the db layer can write to the file 
 def save_lineup(lineup):
     """Converts Business objects back to primitive dicts for the DB layer."""
     
     # Create an empty list to store player dictionaries
+    # this is passed to the write players function in db 
     players_list = []
     
     # Loop through each player in the lineup

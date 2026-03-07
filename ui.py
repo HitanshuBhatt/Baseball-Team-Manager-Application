@@ -114,7 +114,7 @@ def display_lineup(lineup):
     print()
 
 
-# Function to get a valid integer input from the user
+# Function to get a valid integer input from the user  for menu option and stat editing 
 def get_int(prompt, min_val, max_val):
     
     # Continue asking until a valid integer is entered

@@ -88,10 +88,10 @@ class Lineup:
         return len(self.__players)
 
 
-    # Iterator implementation requirement
-    # Allows the Lineup object to be used in loops like: for player in lineup
+    # Iterator method that allows the lineup to be iterated over in a for loop 
+    # like: for player in lineup  
     def __iter__(self):
         
-        # Yield each player object one at a time
+        # Yield each player in the lineup one at a time, allowing for iteration
         for player in self.__players:
             yield player
