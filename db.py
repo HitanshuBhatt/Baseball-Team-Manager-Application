@@ -2,7 +2,7 @@
 import csv
 import os
 
-FILENAME = 'players.csv'
+FILENAME = r"C:\Users\Hitanshu\Documents\Python Programming\midterm\playersii.csv"
 
 def read_players():
     """Reads players from CSV and returns a list of dictionaries."""
@@ -46,5 +46,10 @@ def write_players(players_list):
                 writer.writerow([full_name, p['position'], p['at_bats'], p['hits']])
     except PermissionError:
         print(f"ERROR: Could not save to {FILENAME}. Please close the file if it is open in Excel.")
+    except OSError as e:  # Added specific handling for OSError to catch file descriptor issues
+        if e.errno == 9:  # Errno 9 is Bad file descriptor, often due to file being open in another program
+            print(f"ERROR: Bad file descriptor for {FILENAME}. The file may be open in another program or locked. Please close it and try again.")
+        else:
+            print(f"Error saving data (write_players): {e}")
     except Exception as e:
         print(f"Error saving data (write_players): {e}")

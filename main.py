@@ -24,33 +24,20 @@ def save_lineup(lineup):
             "hits": player.hits
         })
     db.write_players(players_list)
-    
-#  Function to add player to lineup
+
 def add_player(lineup):
-     
-    try:
-        first = input("First name: ").strip()
-        if first == "":
-            raise ValueError("First name cannot be empty.") #  error if empty
-
-        last = input("Last name: ").strip()
-        if last == "":
-            raise ValueError("Last name cannot be empty.") #  error if empty
-
-        pos = ui.get_position("Position: ", POSITIONS)
-        ab = ui.get_int("At bats: ", 0, 10000)
-        
-        # Validation: Cannot have more hits than at-bats
-        hits = ui.get_int("Hits: ", 0, ab)
-        
-        player = Player(first, last, pos, ab, hits)
-        lineup.add_player(player)
-        save_lineup(lineup)
-        print(f"{player.full_name} was added.\n")
-        
-    except ValueError as e:
-        print(f"Error: {e} Please eneter name again.") # Print the specific error message
+    first = input("First name: ")
+    last = input("Last name: ")
+    pos = ui.get_position("Position: ", POSITIONS)
+    ab = ui.get_int("At bats: ", 0, 10000)
     
+    # Validation: Cannot have more hits than at-bats
+    hits = ui.get_int("Hits: ", 0, ab)
+    
+    player = Player(first, last, pos, ab, hits)
+    lineup.add_player(player)
+    save_lineup(lineup)
+    print(f"{player.full_name} was added.\n")
 
 def remove_player(lineup):
     number = ui.get_int("Number: ", 1, lineup.count)
