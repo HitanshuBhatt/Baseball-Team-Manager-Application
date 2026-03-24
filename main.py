@@ -3,7 +3,7 @@ from ui import GUI
 
 def main ():
     # initializing the main application window
-    root = tk.TK ()
+    root = tk.Tk ()
     app= GUI(root)
 
     # sart loop to keep application open 

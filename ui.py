@@ -84,7 +84,7 @@ class GUI(tk.Frame):
         """Updates the database with current field values [cite: 131, 132]"""
         try:
             # Validates and sends data to db module [cite: 135]
-            db.update_player(
+            db.Update_player(
                 self.player_id.get(),
                 self.first_name.get(),
                 self.last_name.get(),
