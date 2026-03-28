@@ -11,6 +11,8 @@ DB_FILE = os.path.join(base_dir, "baseball_sql.db")
 def get_connection():
     return sqlite3.connect(DB_FILE)
 
+
+#  to get player form database
 def get_player(player_id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -20,6 +22,7 @@ def get_player(player_id):
     conn.close()
     return player
 
+#  function to update player in databse
 def update_player(player_id, bat_order, first_name, last_name, position, at_bats, hits):
     conn = get_connection()
     cursor = conn.cursor()
@@ -43,8 +46,8 @@ def add_player(player_id,bat_order,first_name, last_name,position,at_bats,hits):
     conn.commit() # saving changes in the database
     conn.close()
 
+#  function to dleete player from datbase based on ID
 def delete_player(player_id):
-    # Deleting a player record based on the playerID
     conn = get_connection()
     cursor = conn.cursor()
     sql = "DELETE FROM Player WHERE playerID = ?"
